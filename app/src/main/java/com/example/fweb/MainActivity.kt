@@ -23,7 +23,6 @@ class MainActivity : Activity() {
         val page = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
         }
-
         val toolbar = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
@@ -31,7 +30,7 @@ class MainActivity : Activity() {
 
         addressBar = EditText(this).apply {
             hint = "Search or enter address"
-            singleLine = true
+            setSingleLine(true)
             inputType = InputType.TYPE_CLASS_TEXT or
                 InputType.TYPE_TEXT_VARIATION_URI
             imeOptions = EditorInfo.IME_ACTION_GO
@@ -48,7 +47,6 @@ class MainActivity : Activity() {
         addButton("←") {
             if (webView.canGoBack()) webView.goBack()
         }
-
         addButton("→") {
             if (webView.canGoForward()) webView.goForward()
         }
@@ -112,7 +110,7 @@ class MainActivity : Activity() {
         webView.loadUrl(url)
     }
 
-    @Deprecated("Deprecated by Android; retained for basic back-button handling")
+    @Deprecated("Deprecated by Android; retained for back-button handling")
     override fun onBackPressed() {
         if (::webView.isInitialized && webView.canGoBack()) {
             webView.goBack()
